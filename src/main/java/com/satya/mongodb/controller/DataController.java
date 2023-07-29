@@ -1,7 +1,7 @@
 package com.satya.mongodb.controller;
 
 import com.satya.mongodb.model.Product;
-import com.satya.mongodb.repository.ProductRepository;
+import com.satya.mongodb.repository.service.ProductRepoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,15 +12,15 @@ import java.util.List;
 @RestController
 public class DataController {
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepoService productRepoService;
 
     @GetMapping("/find-by-code")
     public Product getProduct(@RequestParam String code){
-        return productRepository.findByCode(code);
+        return productRepoService.findByCode(code);
     }
 
-    @GetMapping("/find-by-color")
-    public List<Product> getProductList(@RequestParam String color){
-        return productRepository.findByColor(color);
+    @GetMapping("/find-all")
+    public List<Product> getAllProducts(){
+        return productRepoService.findAllProducts();
     }
 }
