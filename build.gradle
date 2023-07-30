@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.satya'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.1'
 
 java {
 	sourceCompatibility = '8'
@@ -34,4 +34,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Implementation-Title': 'Gradle Jar File Example',
+				'Main-Class': 'com.satya.mongodb.MongodbApplication'
+	}
+	baseName = project.name
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
 }
