@@ -9,3 +9,13 @@ spring:
     port: 6379
     cache-names: product
     time-to-live: 600000
+
+#MongoDb Properties
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+
+logging:
+  level:
+    root: INFO
